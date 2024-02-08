@@ -11,15 +11,15 @@ public class Reservation {
         timeMade = (int) (Math.random() * 1440);
     }
 
-    public void printInfo(){
+    public String printInfo(){
         if (timeFor % 60 < 10 && timeMade % 60 < 10){
-            System.out.println("Reservation for " + nPeople + " at " + (int)(timeFor/60) + ":0" + (int)(timeFor%60) + " made at " + (int)(timeMade/60) + ":0" + (int)(timeMade%60) );
+            return ("Reservation for " + nPeople + " at " + (int)(timeFor/60) + ":0" + (int)(timeFor%60) + " made at " + (int)(timeMade/60) + ":0" + (int)(timeMade%60) );
         } else if (timeFor % 60 < 10){
-            System.out.println("Reservation for " + nPeople + " at " + (int)(timeFor/60) + ":0" + (int)(timeFor%60) + " made at " + (int)(timeMade/60) + ":" + (int)(timeMade%60) );
+            return ("Reservation for " + nPeople + " at " + (int)(timeFor/60) + ":0" + (int)(timeFor%60) + " made at " + (int)(timeMade/60) + ":" + (int)(timeMade%60) );
         } else if (timeMade % 60 < 10){
-            System.out.println("Reservation for " + nPeople + " at " + (int)(timeFor/60) + ":" + (int)(timeFor%60) + " made at " + (int)(timeMade/60) + ":0" + (int)(timeMade%60) );
+            return ("Reservation for " + nPeople + " at " + (int)(timeFor/60) + ":" + (int)(timeFor%60) + " made at " + (int)(timeMade/60) + ":0" + (int)(timeMade%60) );
         } else {
-            System.out.println("Reservation for " + nPeople + " at " + (int) (timeFor / 60) + ":" + (int) (timeFor % 60) + " made at " + (int) (timeMade / 60) + ":" + (int) (timeMade % 60));
+            return ("Reservation for " + nPeople + " at " + (int) (timeFor / 60) + ":" + (int) (timeFor % 60) + " made at " + (int) (timeMade / 60) + ":" + (int) (timeMade % 60));
         }
     }
 

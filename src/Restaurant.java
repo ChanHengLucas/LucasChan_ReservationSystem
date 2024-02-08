@@ -1,5 +1,6 @@
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import javax.management.modelmbean.ModelMBeanOperationInfo;
 import javax.swing.*;
 
 import java.awt.*;
@@ -36,6 +37,15 @@ public class Restaurant {
         }
     } // might not need anymore after GUI exists
 
+    public String getReservations(){
+        String reservationString = "";
+        // loop through guestList, adding one line per reservation to string
+        for (int i = 0; i < guestList.size(); i++){
+            reservationString += guestList.get(i).printInfo() + "\n";
+        }
+        System.out.println(reservationString);
+        return reservationString;
+    }
 
     public void addReservation(){
         for (int i = 0; i < 25; i++) {
@@ -126,14 +136,21 @@ public class Restaurant {
 
         private JTextField inputText;
 
+        Restaurant Mooo = new Restaurant();
+
+
         public RestaurantGUI() {
 
             mainFrame = new JFrame();
-            mainPanel = new JPanel();
+            mainPanel = new JPanel(new BorderLayout());
             northPanel = new JPanel();
+            southPanel = new JPanel();
             buttonPeople = new JButton("Sort by People");
+            buttonPeople.addActionListener(this);
             buttonTimeFor = new JButton("Sort by Time For");
+            buttonTimeFor.addActionListener(this);
             buttonTimeMade = new JButton("Sort by Time Made");
+            buttonTimeMade.addActionListener(this);
             buttonAdd = new JButton("+");
             reservationList = new JTextArea();
             inputText = new JTextField();
@@ -150,7 +167,7 @@ public class Restaurant {
             northPanel.add(buttonTimeFor);
             northPanel.add(buttonTimeMade);
 
-            mainPanel.add(reservationList);
+            mainPanel.add(reservationList, BorderLayout.CENTER);
 
             southPanel.setLayout(new FlowLayout());
             southPanel.add(buttonAdd);
@@ -172,17 +189,23 @@ public class Restaurant {
 
             if (buttonClicked == buttonPeople) {
                 System.out.println("Sort by People");
-                reservationList.setText(reservationList.getText());
+//                reservationList.setText(reservationList.getText());
+                Mooo.sortByNPeople();
+                reservationList.setText(Mooo.getReservations());
             }
 
             if (buttonClicked == buttonTimeFor) {
                 System.out.println("Sort by Time For");
                 reservationList.setText(reservationList.getText());
+                Mooo.sortByTimeFor();
+                reservationList.setText(Mooo.getReservations());
             }
 
             if (buttonClicked == buttonTimeMade) {
                 System.out.println("Sort by Time Made");
                 reservationList.setText(reservationList.getText());
+                Mooo.sortByTimeMade();
+                reservationList.setText(Mooo.getReservations());
             }
 
             if (buttonClicked == buttonAdd) {
@@ -200,7 +223,6 @@ public class Restaurant {
 //        int nOfReservations = 25;
 //        int nPeople;
 
-        Restaurant Mooo = new Restaurant();
         RestaurantGUI GUI = new RestaurantGUI();
     }
 }
